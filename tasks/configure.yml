@@ -44,10 +44,9 @@
   become: yes
   remote_user: "{{ archivematica_src_configure_ss_ssh_user | default('artefactual') }}"
   register: archivematica_src_configure_ss_api_key_temp
-  when: 
-     - archivematica_src_configure_ss_api_key is undefined
-     - ss_user.stdout is defined and ss_user.stdout != ""
-     - ss_user.stdout is undefined
+  when: archivematica_src_configure_ss_api_key is undefined or
+        (ss_user.stdout is defined and ss_user.stdout != "") or
+        ss_user.stdout is undefined
 
 - set_fact: archivematica_src_configure_ss_api_key="{{ archivematica_src_configure_ss_api_key_temp.stdout }}"
   when: 
