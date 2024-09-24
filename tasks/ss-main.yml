@@ -43,7 +43,7 @@
 # Update: this problem may have been fixed with postinst removal
 - name: "Ensure the source code is readable by all"
   file:
-    path: "{{ archivematica_src_dir }}/archivematica-storage-service"
+    path: "{{ archivematica_src_dir }}"
     mode: "o+rX"
     recurse: "yes"
   become: "yes"
