@@ -38,6 +38,7 @@
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     backup: "yes"
+    mode: '644'
   with_items:
     - src: "etc/sysconfig/archivematica-mcp-server.j2"
       dest: "{{ systemd_environment_path }}/archivematica-mcp-server"
@@ -49,6 +50,7 @@
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     backup: "yes"
+    mode: '644'
   with_items:
     - src: "etc/sysconfig/archivematica-mcp-client.j2"
       dest: "{{ systemd_environment_path }}/archivematica-mcp-client"
@@ -100,6 +102,7 @@
     src: "{{ item }}"
     dest: /etc/archivematica/{{ item | basename | regex_replace('\.j2','') }}
     backup: "yes"
+    mode: '644'
   with_first_found:
     - "templates/{{ inventory_hostname }}/dashboard.logging.json.j2"
     - "templates/dashboard.logging.json.j2"
@@ -111,6 +114,7 @@
     src: "{{ item }}"
     dest: /etc/archivematica/{{ item | basename | regex_replace('\.j2','') }}
     backup: "yes"
+    mode: '644'
   with_first_found:
     - "templates/{{ inventory_hostname }}/serverConfig.logging.json.j2"
     - "templates/serverConfig.logging.json.j2"
@@ -122,6 +126,7 @@
     src: "{{ item }}"
     dest: /etc/archivematica/{{ item | basename | regex_replace('\.j2','') }}
     backup: "yes"
+    mode: '644'
   with_first_found:
     - "templates/{{ inventory_hostname }}/clientConfig.logging.json.j2"
     - "templates/clientConfig.logging.json.j2"
@@ -149,6 +154,7 @@
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     backup: "yes"
+    mode: '644'
   when:
     - "ansible_service_mgr == 'systemd'"
   with_items:
@@ -197,4 +203,3 @@
     - ansible_service_mgr == "systemd"
     - archivematica_src_am_mcpclient_instances > 1
   tags: amsrc-mcp-client
-
