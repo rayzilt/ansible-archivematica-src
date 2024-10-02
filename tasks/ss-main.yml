@@ -202,6 +202,7 @@
     backup: "yes"
     force: "yes"
     remote_src: "yes"
+    mode: '0644'
   tags: "amsrc-ss-websrv"
 
 
