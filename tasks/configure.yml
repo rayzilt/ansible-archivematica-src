@@ -5,6 +5,7 @@
     src: "{{ item }}"
     dest: "/etc/rsyslog.d/archivematica.conf"
     backup: "yes"
+    mode: '0644'
   with_first_found:
     - files:
         - "templates/{{ inventory_hostname }}/rsyslog.conf.j2"

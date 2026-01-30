@@ -140,6 +140,7 @@
     state: "directory"
     owner: "archivematica"
     group: "archivematica"
+    mode: '0755'
   with_items:
     - "/var/archivematica/storage-service"
   tags: "amsrc-ss-osconf"
@@ -148,6 +149,7 @@
   file:
     dest: "{{ item }}"
     state: "directory"
+    mode: '0755'
   with_items:
     - "/etc/archivematica"
   tags: "amsrc-ss-osconf"
@@ -168,6 +170,7 @@
     owner: "archivematica"
     group: "archivematica"
     state: "touch"
+    mode: '0644'
   with_items:
     - "storage_service.log"
     - "storage_service_debug.log"
@@ -203,6 +206,7 @@
     backup: "yes"
     force: "yes"
     remote_src: "yes"
+    mode: '0644'
   tags: "amsrc-ss-websrv"
 
 

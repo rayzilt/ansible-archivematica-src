@@ -6,6 +6,7 @@
     src: "etc/systemd/system/archivematica-storage-service.service.j2"
     dest: "/etc/systemd/system/archivematica-storage-service.service"
     backup: "yes"
+    mode: '0644'
   tags: "amsrc-ss-osconf"
   when:
     - ansible_service_mgr == "systemd"
@@ -15,6 +16,7 @@
     src: "etc/sysconfig/archivematica-storage-service.j2"
     dest: "{{ systemd_environment_path }}/archivematica-storage-service"
     backup: "yes"
+    mode: '0644'
   tags: "amsrc-ss-osconf"
 
 #
@@ -26,6 +28,7 @@
     src: "{{ item }}"
     dest: "/etc/archivematica/storageService.logging.json"
     backup: "yes"
+    mode: '0644'
   with_first_found:
     - files:
         - "templates/{{ inventory_hostname }}/storageService.logging.json.j2"
