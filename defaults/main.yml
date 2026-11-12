@@ -37,6 +37,11 @@ archivematica_src_automation_tools_repo: "https://github.com/artefactual/automat
 # Useful in offline or rpm repos controlled environments
 install_rpm_repositories: "true"
 
+# APT Repositories
+# Change to false if you don't want to install apt repos and their signing keys
+# Useful in offline or apt repos controlled environments
+install_apt_repositories: true
+
 # Branches
 archivematica_src_am_version: "qa/1.x"
 archivematica_src_ss_version: "qa/0.x"

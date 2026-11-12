@@ -41,12 +41,14 @@
       __archivematica_src_apt_key_id: "F23C5A6CF475977595C89F51BA6932366A755776"
     when:
       - ansible_os_family == "Debian"
+      - install_apt_repositories|bool
 
   - name: "Add Deadsnakes APT repository (Ubuntu)"
     apt_repository:
       repo: "ppa:deadsnakes"
     when:
       - ansible_os_family == "Debian"
+      - install_apt_repositories|bool
 
   # Not using package in next task because it is slower than apt or yum modules.
   # The package module is not installing the every list of packages at the same time

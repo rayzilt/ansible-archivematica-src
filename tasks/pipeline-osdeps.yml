@@ -15,12 +15,14 @@
       when:
         - "ansible_distribution_version is version('20.04', '>=')"
         - not archivematica_src_mediainfo_repo_package_latest|bool
+        - install_apt_repositories|bool
 
     - name: "Get latest mediainfo repo package URL"
       include_tasks: "pipeline-osdeps-get-latest-mediainfo-url.yml"
       when:
         - "ansible_distribution_version is version('20.04', '>=')"
         - archivematica_src_mediainfo_repo_package_latest|bool
+        - install_apt_repositories|bool
 
     - name: "Install mediaarea.net repo (mediaconch, mediainfo) (Ubuntu >=20.04) (Latest)"
       apt:
@@ -28,6 +30,7 @@
       when:
         - "ansible_distribution_version is version('20.04', '>=')"
         - archivematica_src_mediainfo_repo_package_latest|bool
+        - install_apt_repositories|bool
 
     - name: "Update apt cache (Ubuntu >=20.04)"
       apt:
@@ -46,6 +49,7 @@
         - "{{ dashboard_osdeps.repokeys + MCPServer_osdeps.repokeys + MCPClient_osdeps.repokeys }}"
       when:
         - (dashboard_osdeps.repokeys + MCPServer_osdeps.repokeys + MCPClient_osdeps.repokeys) | length > 0
+        - install_apt_repositories|bool
 
     - name: "Add External dependency repos (Ubuntu)"
       apt_repository:
@@ -55,6 +59,7 @@
         - "{{ dashboard_osdeps.repos + MCPServer_osdeps.repos + MCPClient_osdeps.repos }}"
       when:
         - (dashboard_osdeps.repos + MCPServer_osdeps.repos + MCPClient_osdeps.repos) | length > 0
+        - install_apt_repositories|bool
 
   when:
     - ansible_distribution == "Ubuntu"
